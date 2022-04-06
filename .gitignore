@@ -1,0 +1,5 @@
+.DS_STORE
+server/api/.DS_Store
+server/api/._.DS_Store
+node_modules
+client/node_modules
