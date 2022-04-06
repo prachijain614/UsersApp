@@ -32,7 +32,7 @@ const editUser = async (req, res) => {
   return res.status(httpStatus.OK).json({
     status: httpStatus.OK,
     message: "success.",
-    payload: user.tranform(),
+    payload: user,
   });
 };
 module.exports = { getUsers, editUser };
