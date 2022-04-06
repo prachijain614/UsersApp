@@ -1,11 +1,9 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import WebService from "../../api";
 import Rsgister from "../../Components/Register";
 import { handleError } from "../../utils/helper";
 
 const Page = () => {
-  const history = useHistory();
   const onRegister = async (params) => {
     try {
       const action = WebService.Action.signup;
@@ -14,7 +12,7 @@ const Page = () => {
       if (response.token) {
         localStorage.setItem("token", response.token);
       }
-      history.push("/users");
+      window.location.href = "/users";
     } catch (err) {
       handleError(err?.response);
     }
