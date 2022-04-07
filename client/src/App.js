@@ -35,7 +35,6 @@ const PrivateRoute = ({ isAuthenticated, ...props }) => {
 
 function App() {
   const isAuthenticated = localStorage.getItem("token");
-  debugger;
   return (
     <div className="App">
       <BrowserRouter>

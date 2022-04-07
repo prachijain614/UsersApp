@@ -2,8 +2,18 @@ const User = require("../../model/user");
 const httpStatus = require("http-status");
 
 const getUsers = async (req, res) => {
+  const { search } = req.query;
   try {
-    const user = await User.find();
+    const user = await User.aggregate([
+      {
+        $match: {
+          $or: [
+            { firstname: { $regex: search, $options: "i" } },
+            { lastname: { $regex: search, $options: "i" } },
+          ],
+        },
+      },
+    ]);
     /** find the user list and return the response */
     return res.status(httpStatus.OK).json({
       status: httpStatus.OK,

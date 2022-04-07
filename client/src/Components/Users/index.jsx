@@ -7,7 +7,7 @@ import "./style.css";
 import TableHead from "./TableHead";
 import TableRow from "./TableRow";
 
-const Users = () => {
+const Users = ({ onSearch }) => {
   let users = useSelector((state) => state.users.data);
   const dispatch = useDispatch();
 
@@ -31,9 +31,16 @@ const Users = () => {
       handleError(err?.response);
     }
   };
+
+  const onSearchChange = (e) => {
+    let value = e.target.value;
+    if (value.length % 3 == 0) onSearch(value);
+  };
+
   return (
     <>
       <h1>Users</h1>
+      <input placeholder="search here..." onChange={onSearchChange} />
       <table>
         <thead>
           <TableHead />

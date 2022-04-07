@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 
 const Cell = ({ value, editable, onChange }) => {
   const [inputValue, setInputValue] = useState(value);
+
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
+
   const onValueChange = (e) => {
     setInputValue(e.target.value);
     onChange && onChange(e.target.value);
