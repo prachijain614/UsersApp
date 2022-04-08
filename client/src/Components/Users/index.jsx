@@ -34,7 +34,8 @@ const Users = ({ onSearch }) => {
 
   const onSearchChange = (e) => {
     let value = e.target.value;
-    if (value.length % 3 == 0) onSearch(value);
+    // if (value.length % 3 == 0) onSearch(value);
+    onSearch(value);
   };
 
   return (

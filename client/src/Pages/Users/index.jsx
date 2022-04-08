@@ -4,6 +4,7 @@ import Users from "../../Components/Users";
 import { useDispatch } from "react-redux";
 import { setUsers } from "../../redux/users/action";
 import { handleError } from "../../utils/helper";
+import { debounce } from "lodash";
 
 const Page = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,6 @@ const Page = () => {
     try {
       const action = `${WebService.Action.list}?search=${search}`;
       let response = await WebService.get(action);
-      // debugger;
       /** make table cell non-editable initially */
       let data = response.payload?.map((d) => {
         d["editable"] = false;
@@ -33,12 +33,14 @@ const Page = () => {
     localStorage.clear();
   };
 
+  const onSearch = debounce((e) => setSearch(e), 500);
+
   return (
     <>
       <a className="logout" href="/" onClick={onLogout}>
         Logout
       </a>
-      <Users onSearch={setSearch} />
+      <Users onSearch={(e) => onSearch(e)} />
     </>
   );
 };
