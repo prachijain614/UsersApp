@@ -33,6 +33,7 @@ const Page = () => {
     localStorage.clear();
   };
 
+  /** debounce will optimize searching */
   const onSearch = debounce((e) => setSearch(e), 500);
 
   return (
